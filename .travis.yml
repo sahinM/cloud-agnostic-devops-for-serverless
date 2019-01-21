@@ -1,0 +1,12 @@
+sudo: required
+
+#services:
+#  - docker
+
+language: python
+python:
+  - "3.6"
+
+install_openfaas_cli:
+  - sudo apt-get update
+  - sudo curl -sSL https://cli.openfaas.com | sh
