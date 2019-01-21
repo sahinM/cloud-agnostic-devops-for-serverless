@@ -6,4 +6,5 @@ sudo: required
 #language: java
 
 install_openfaas_cli:
-  - curl -sSL https://cli.openfaas.com | sh
+  - sudo apt-get update
+  - sudo curl -sSL https://cli.openfaas.com | sh
