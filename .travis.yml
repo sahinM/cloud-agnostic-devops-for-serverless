@@ -6,4 +6,4 @@ services:
 language: java
 
 install_openfaas_cli:
-  curl -sSL https://cli.openfaas.com | sh
+  - curl -sSL https://cli.openfaas.com | sh
