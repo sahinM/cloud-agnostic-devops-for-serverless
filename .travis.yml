@@ -12,20 +12,19 @@ env:
   - REGION=eu-west-1
 # GKE
 
+before_install:
+  - sudo apt-get update
+  - 
+
+
 # stages of CI/CD pipeline
 stages:
   - prepare_tooling
+  - wget https://releases.hashicorp.com/terraform/0.11.11/terraform_0.11.11_linux_amd64.zip &&
+    unzip terraform_0.11.10_linux_amd64.zip &&
+    mv terraform /usr/local/bin/
+  - terraform --version
 
-jobs:
-  include:
-    - stage: prepare_tooling
-      script: "Preparing needed tooling ... "
-      script: sudo apt-get update
-      script: "Installing Terraform 0.11.11 ..."
-      script: sudo apt-get install unzip |
-              wget https://releases.hashicorp.com/terraform/0.11.11/terraform_0.11.11_linux_amd64.zip | 
-              unzip terraform_0.11.10_linux_amd64.zip | 
-              sudo mv terraform /usr/local/bin/
       #script: terraform --version
     # installing faas-cli
   #- curl -sSL https://cli.openfaas.com | sudo sh
