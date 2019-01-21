@@ -13,12 +13,14 @@ env:
 # GKE
 
 before_install:
+  # install needed tooling: Terraform
   - sudo apt-get update
   - wget https://releases.hashicorp.com/terraform/0.11.11/terraform_0.11.11_linux_amd64.zip &&
     unzip terraform_0.11.11_linux_amd64.zip &&
     sudo mv terraform /usr/local/bin/
   - terraform --version
-
+  - curl -sSL https://cli.openfaas.com | sudo sh
+  - faas-cli version
 
 
 
