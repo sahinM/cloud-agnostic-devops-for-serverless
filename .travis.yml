@@ -1,18 +1,4 @@
-sudo: required
-
-#services:
-#  - docker
-
-language: python
-python:
-  - "3.6"
-
-# command to install dependencies
-install:
-  - pip install -r requirements.txt
-# command to run tests
-script:
-  - pytest
-install_openfaas_cli:
-  - sudo apt-get update
-  - sudo curl -sSL https://cli.openfaas.com | sh
+language: ruby
+rvm:
+ - 2.2
+ - jruby
