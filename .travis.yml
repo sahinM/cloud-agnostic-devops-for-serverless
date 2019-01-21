@@ -3,17 +3,23 @@ sudo: required
 services:
   - docker
 
-language: node_js
-node_js:
-  - "10"
+# Environment variables
+env:
+# EKS
+  - NODES_SIZE=2
+  - REGION=eu-west-1
+# GKE
 
-cache: yarn
-
-before_install:
-  - echo APT-GET UPDATE Step...
+# install needed tools
+prepare_tooling:
+  - echo APT-GET UPDATE Step ...
   - sudo apt-get update
-  # installing faas-cli
-  - curl -sSL https://cli.openfaas.com | sudo sh
+  - echo installing Terraform 0.11.11 ...
+  - curl https://releases.hashicorp.com/terraform/0.11.11/terraform_0.11.11_linux_amd64.zip && unzip terraform_0.11.11_linux_amd64.zip
+    # installing faas-cli
+  #- curl -sSL https://cli.openfaas.com | sudo sh
 
-script:
-  - yarn test
+# EKS OpenFaaS installation
+# install eksctl for creating EKS cluster
+
+  
