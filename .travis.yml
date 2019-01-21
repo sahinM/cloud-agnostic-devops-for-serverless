@@ -1,4 +1,19 @@
-language: ruby
-rvm:
- - 2.2
- - jruby
+sudo: required
+
+services:
+  - docker
+
+language: node_js
+node_js:
+  - "10"
+
+cache: yarn
+
+before_install:
+  - echo APT-GET UPDATE Step...
+  - sudo apt-get update
+  # installing faas-cli
+  - curl -sSL https://cli.openfaas.com | sudo sh
+
+script:
+  - yarn test
