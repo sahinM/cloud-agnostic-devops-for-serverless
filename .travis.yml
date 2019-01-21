@@ -3,7 +3,7 @@ sudo: required
 services:
   - docker
 
-language: java
+#language: java
 
 install_openfaas_cli:
   - curl -sSL https://cli.openfaas.com | sh
