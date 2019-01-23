@@ -22,10 +22,16 @@ before_install:
   - export PATH=/snap/bin:$PATH
   - sudo snap install terraform
   - terraform --version
+  - sudo snap install helm --classic
   
 install:
-  - curl -sSL https://cli.openfaas.com | sudo sh
+  # install AWS EKS Cluster with Terraform
 
+  - terraform init terraform-resources/aws/eks
+  - terraform apply terraform-resources/aws/eks
+
+  # install the openFaaS-cli
+  - curl -sSL https://cli.openfaas.com | sudo sh
 
 
       #script: terraform --version
