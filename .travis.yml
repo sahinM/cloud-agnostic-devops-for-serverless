@@ -28,7 +28,7 @@ install:
   # install AWS EKS Cluster with Terraform
 
   - terraform init terraform-resources/aws/eks
-  - terraform apply -auto-approve terraform-resources/aws/eks
+  - terraform destroy -auto-approve terraform-resources/aws/eks
 
   # install the openFaaS-cli
   - curl -sSL https://cli.openfaas.com | sudo sh
