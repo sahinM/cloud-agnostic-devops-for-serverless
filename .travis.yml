@@ -4,13 +4,14 @@ language: minimal
 
 addons:
   apt:
-    packages:
-      - snapd
+    update: true
   snaps:
     - terraform
-    - kubectl
-    - helm    
-    update: true
+    - name: kubectl
+      classic: true
+    - name: helm
+      classic: true    
+    
 services:
   #- docker
 
