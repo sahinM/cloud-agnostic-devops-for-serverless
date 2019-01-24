@@ -18,7 +18,7 @@ services:
 # Environment variables
 env:
 # EKS
-  - NODES_SIZE=2
+  #- NODES_SIZE=2
   - REGION=eu-west-1
 # GKE
 
