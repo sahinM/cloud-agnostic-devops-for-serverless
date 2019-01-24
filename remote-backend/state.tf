@@ -1,1 +1,1 @@
-../remote-state/state.tf
+remote-state/state.tf
