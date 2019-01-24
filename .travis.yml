@@ -30,7 +30,7 @@ install:
   - #terraform init terraform-resources/aws/eks
   - #terraform destroy -auto-approve terraform-resources/aws/eks
   # install OpenFaaS on EKS Cluster with Helm
-  - sudo ./scripts/installation/install-kubectl.sh
+  - ./scripts/installation/install-kubectl.sh
 
 
   # install the openFaaS-cli
