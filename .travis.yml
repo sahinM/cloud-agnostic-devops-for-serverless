@@ -6,7 +6,7 @@ language: minimal
 
 addons:
   apt:
-    update: true
+    update: false
   snaps:
     - terraform
     # - name: kubectl
