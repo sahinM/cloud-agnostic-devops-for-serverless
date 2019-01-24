@@ -29,10 +29,7 @@ script:
   - kubectl version
 
 before_install:
-  # install needed tooling: Terraform
-  #- export PATH=/snap/bin:$PATH
-  #- sudo snap install terraform
-  #- sudo snap install helm --classic
+  # initialize Terraform with Remote State and Consul as Backend
   
 install:
   # install AWS EKS Cluster with Terraform
