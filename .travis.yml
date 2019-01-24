@@ -44,7 +44,9 @@ before_install:
   # - echo Destroying the whole infrastructure...
   # - terraform destroy -auto-approve remote-state
   # - terraform destroy -auto-approve remote-backend
-  
+script:
+  - echo $BACKEND_BUCKET_NAME
+  - echo $BACKEND_TABLE_NAME
 install:
   # install AWS EKS Cluster with Terraform
   # TODO workspaces and remote state
