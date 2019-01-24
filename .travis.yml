@@ -22,11 +22,14 @@ env:
   - REGION=eu-west-1
 # GKE
 
+script:
+  - terraform --version
+  - kubectl version
+
 before_install:
   # install needed tooling: Terraform
   #- export PATH=/snap/bin:$PATH
   #- sudo snap install terraform
-  - terraform --version
   #- sudo snap install helm --classic
   
 install:
