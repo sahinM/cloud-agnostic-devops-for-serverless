@@ -1,1 +1,1 @@
-locals.tf
+/Users/sahinm/projects/cloud-agnostic-devops-for-serverless/locals.tf
