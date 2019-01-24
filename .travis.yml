@@ -9,10 +9,10 @@ addons:
     update: true
   snaps:
     - terraform
-    - name: kubectl
-      classic: true
-    - name: helm
-      classic: true    
+    # - name: kubectl
+    #   classic: true
+    # - name: helm
+    #   classic: true    
     
 services:
   #- docker
@@ -26,17 +26,16 @@ env:
 
 script:
   - terraform --version
-  - kubectl version
+  # - kubectl version
 
 before_install:
   - terraform workspace new state
   - terraform init remote-state
   - terraform destroy -auto-approve remote-state
-  # - terraform init remote-backend 
-  #   -backend-config="bucket=$BACKEND_BUCKET_NAME"
-  #   -backend-config="dynamodb_table=$BACKEND_TABLE_NAME"
-  #   -backend-config="region=$BACKEND_REGION"
-  # initialize Terraform with Remote State and Consul as Backend
+  - terraform init remote-backend 
+    -backend-config="bucket=$BACKEND_BUCKET_NAME"
+    -backend-config="dynamodb_table=$BACKEND_TABLE_NAME"
+    -backend-config="region=$BACKEND_REGION"
   
 install:
   # install AWS EKS Cluster with Terraform
@@ -48,7 +47,7 @@ install:
   # install OpenFaaS on EKS Cluster with Helm
 
   # install the openFaaS-cli
-  - curl -sSL https://cli.openfaas.com | sudo sh
+  # - curl -sSL https://cli.openfaas.com | sudo sh
 
 
       #script: terraform --version
