@@ -31,7 +31,7 @@ script:
 before_install:
   - terraform workspace new state
   - terraform init remote-state
-  - terraform destroy -auto-approve remote-state
+  - terraform apply -auto-approve remote-state
   - BACKEND_BUCKET_NAME=$(terraform output BACKEND_BUCKET_NAME)
     BACKEND_TABLE_NAME=$(terraform output BACKEND_TABLE_NAME)
   - terraform init
@@ -39,6 +39,9 @@ before_install:
     -backend-config="dynamodb_table=$BACKEND_TABLE_NAME"
     -backend-config="region=$BACKEND_REGION"
     remote-backend
+  - echo Destroying the whole infrastructure...
+  - terraform destroy -auto-approve remote-state
+  - terraform destroy -auto-approve remote-backend
   
 install:
   # install AWS EKS Cluster with Terraform
