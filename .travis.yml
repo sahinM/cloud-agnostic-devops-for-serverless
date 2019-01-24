@@ -1,3 +1,4 @@
+dist: xenial
 sudo: required
 
 language: minimal
@@ -6,9 +7,13 @@ addons:
   apt:
     packages:
       - snapd
+  snaps:
+    - terraform
+    - kubectl
+    - helm    
     update: true
 services:
-  - docker
+  #- docker
 
 # Environment variables
 env:
@@ -19,10 +24,10 @@ env:
 
 before_install:
   # install needed tooling: Terraform
-  - export PATH=/snap/bin:$PATH
-  - sudo snap install terraform
+  #- export PATH=/snap/bin:$PATH
+  #- sudo snap install terraform
   - terraform --version
-  - sudo snap install helm --classic
+  #- sudo snap install helm --classic
   
 install:
   # install AWS EKS Cluster with Terraform
@@ -30,7 +35,6 @@ install:
   - #terraform init terraform-resources/aws/eks
   - #terraform destroy -auto-approve terraform-resources/aws/eks
   # install OpenFaaS on EKS Cluster with Helm
-  - ./install-kubectl.sh
 
 
   # install the openFaaS-cli
