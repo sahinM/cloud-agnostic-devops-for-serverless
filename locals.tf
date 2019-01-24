@@ -1,3 +1,3 @@
 locals {
-    project_name = "CloudAgnosticCDForServerless"
+    project_name = "cloud-agnostic-cd-or-serverless"
 }

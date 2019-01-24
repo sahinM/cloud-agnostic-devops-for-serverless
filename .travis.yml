@@ -29,6 +29,13 @@ script:
   - kubectl version
 
 before_install:
+  - terraform workspace new state
+  - terraform init remote-state
+  - terraform apply -auto-approve remote-state
+  # - terraform init remote-backend 
+  #   -backend-config="bucket=$BACKEND_BUCKET_NAME"
+  #   -backend-config="dynamodb_table=$BACKEND_TABLE_NAME"
+  #   -backend-config="region=$BACKEND_REGION"
   # initialize Terraform with Remote State and Consul as Backend
   
 install:
@@ -36,8 +43,9 @@ install:
   # TODO workspaces and remote state
   - #terraform init terraform-resources/aws/eks
   - #terraform destroy -auto-approve terraform-resources/aws/eks
-  # install OpenFaaS on EKS Cluster with Helm
 
+
+  # install OpenFaaS on EKS Cluster with Helm
 
   # install the openFaaS-cli
   - curl -sSL https://cli.openfaas.com | sudo sh
