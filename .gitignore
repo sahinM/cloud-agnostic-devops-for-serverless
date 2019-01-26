@@ -1,12 +1,10 @@
 #  Local .terraform directories
-**/.terraform/*
+.terraform/*
 
 # .tfstate files
-*.tfstate
-*.tfstate.*
-eks-state
+#
 
 # .tfvars files
-*.tfvars
+#*.tfvars
 
 config-map-aws-auth.yaml
