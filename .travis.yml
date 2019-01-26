@@ -39,9 +39,8 @@ script:
   - echo $BACKEND_BUCKET_NAME
   - echo $BACKEND_TABLE_NAME
   - terraform init
-    -auto-approve
-    -backend-config="bucket=${BACKEND_BUCKET_NAME}"
-    -backend-config="dynamodb_table=${BACKEND_TABLE_NAME}"
+    -backend-config="bucket=$BACKEND_BUCKET_NAME"
+    -backend-config="dynamodb_table=$BACKEND_TABLE_NAME"
     -backend-config="region=eu-west-1"
     remote-backend
   - echo Destroying the whole infrastructure...
