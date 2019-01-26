@@ -43,6 +43,7 @@ script:
     -backend-config="dynamodb_table=cloud-agnostic-cd-or-serverless-264885624248-eu-west-1"
     -backend-config="region=eu-west-1"
     remote-backend
+  - terraform apply -auto-approve remote-backend
   # - echo Destroying the whole infrastructure...
   # - terraform destroy -auto-approve remote-state
   # - terraform destroy -auto-approve remote-backend
