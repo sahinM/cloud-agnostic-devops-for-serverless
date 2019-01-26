@@ -31,11 +31,11 @@ script:
 before_install:
 
 script:
-  - terraform workspace new state
-  - terraform init remote-state
-  - terraform apply -auto-approve remote-state
-  - BACKEND_BUCKET_NAME=$(terraform output BACKEND_BUCKET_NAME)
-    BACKEND_TABLE_NAME=$(terraform output BACKEND_TABLE_NAME)
+  # - terraform workspace new state
+  # - terraform init remote-state
+  # - terraform apply -auto-approve remote-state
+  # - BACKEND_BUCKET_NAME=$(terraform output BACKEND_BUCKET_NAME)
+  #   BACKEND_TABLE_NAME=$(terraform output BACKEND_TABLE_NAME)
   - echo $BACKEND_BUCKET_NAME
   - echo $BACKEND_TABLE_NAME
   - terraform init \
