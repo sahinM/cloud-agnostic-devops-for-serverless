@@ -7,4 +7,4 @@
 # .tfvars files
 #*.tfvars
 
-config-map-aws-auth.yaml
+config-map-aws-auth_OpenFaaS-Demo-Cluster.yaml
