@@ -6,10 +6,6 @@ provider "aws" {
   region  = "${var.region}"
 }
 
-provider "random" {
-  version = "= 1.3.1"
-}
-
 # access to the list of AWS Availability Zones
 data "aws_availability_zones" "available" {}
 
