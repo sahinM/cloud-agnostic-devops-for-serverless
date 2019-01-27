@@ -19,6 +19,8 @@ resource "aws_s3_bucket" "state" {
   bucket = "${local.state_bucket_name}"
   region = "${data.aws_region.current.name}"
 
+  force_destroy=true
+  
   versioning {
     enabled = true
   }
