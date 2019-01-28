@@ -11,7 +11,7 @@ kubectl -n kube-system create sa tiller
           --clusterrole cluster-admin
           --serviceaccount=kube-system:tiller
   # installing server component of helm -> tiller 
-helm init --skip-refresh --upgrade --service-account tiller
+helm init --skip-refresh --wait --upgrade --service-account tiller
   # adding namespaces openfaas and openfaas-fn
 kubectl apply -f https://raw.githubusercontent.com/openfaas/faas-netes/master/namespaces.yml
   # installing openFaas with Helm
