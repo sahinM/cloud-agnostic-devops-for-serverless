@@ -1,0 +1,72 @@
+# dist: xenial
+
+# sudo: required
+
+# language: minimal
+
+# addons:
+#   apt:
+#     update: false
+#   snaps:
+#     - terraform
+#     # - name: kubectl
+#     #   classic: true
+#     # - name: helm
+#     #   classic: true    
+    
+# services:
+#   #- docker
+
+# # Environment variables
+# env:
+# # EKS
+#   #- NODES_SIZE=2
+#   - REGION=eu-west-1
+#   - BACKEND_BUCKET_NAME=cloud-agnostic-cd-or-serverless-264885624248-eu-west-1
+#   - BACKEND_TABLE_NAME=cloud-agnostic-cd-or-serverless-264885624248-eu-west-1
+# # GKE
+
+# script:
+#   - terraform --version
+#   # - kubectl version
+
+# before_install:
+
+# script:
+#   - bash scripts/installation/bootstrapping-infra.sh
+#   # - terraform workspace new state
+#   # - terraform init remote-state
+#   # - terraform apply -auto-approve remote-state
+#   # - BACKEND_BUCKET_NAME=$(terraform output BACKEND_BUCKET_NAME)
+#   #   BACKEND_TABLE_NAME=$(terraform output BACKEND_TABLE_NAME)
+#   - terraform init
+#     -backend-config="bucket=$BACKEND_BUCKET_NAME"
+#     -backend-config="dynamodb_table=$BACKEND_TABLE_NAME"
+#     -backend-config="$REGION"
+#     remote-backend
+#   - terraform apply -auto-approve remote-backend
+#   # - echo Destroying the whole infrastructure...
+#   # - terraform destroy -auto-approve remote-state
+#   # - terraform destroy -auto-approve remote-backend
+
+# install:
+#   # install AWS EKS Cluster with Terraform
+#   # TODO workspaces and remote state
+#   - #terraform init terraform-resources/aws/eks
+#   - #terraform destroy -auto-approve terraform-resources/aws/eks
+
+
+#   # install OpenFaaS on EKS Cluster with Helm
+
+#   # install the openFaaS-cli
+#   # - curl -sSL https://cli.openfaas.com | sudo sh
+
+
+#       #script: terraform --version
+#     # installing faas-cli
+#   #- curl -sSL https://cli.openfaas.com | sudo sh
+
+# # EKS OpenFaaS installation
+# # install eksctl for creating EKS cluster
+
+  

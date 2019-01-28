@@ -1,72 +1,48 @@
-# dist: xenial
+dist: xenial
 
-# sudo: required
+sudo: required
 
-# language: minimal
+language: minimal
 
-# addons:
-#   apt:
-#     update: false
-#   snaps:
-#     - terraform
-#     # - name: kubectl
-#     #   classic: true
-#     # - name: helm
-#     #   classic: true    
-    
-# services:
-#   #- docker
+  addons:
+    apt:
+      update: false
+    snaps:
+     # - terraform
+      - name: kubectl
+        classic: true
+      - name: helm
+        classic: true
+  services:
+    - docker
 
-# # Environment variables
-# env:
-# # EKS
-#   #- NODES_SIZE=2
-#   - REGION=eu-west-1
-#   - BACKEND_BUCKET_NAME=cloud-agnostic-cd-or-serverless-264885624248-eu-west-1
-#   - BACKEND_TABLE_NAME=cloud-agnostic-cd-or-serverless-264885624248-eu-west-1
-# # GKE
-
-# script:
-#   - terraform --version
-#   # - kubectl version
-
-# before_install:
-
-# script:
-#   - bash scripts/installation/bootstrapping-infra.sh
-#   # - terraform workspace new state
-#   # - terraform init remote-state
-#   # - terraform apply -auto-approve remote-state
-#   # - BACKEND_BUCKET_NAME=$(terraform output BACKEND_BUCKET_NAME)
-#   #   BACKEND_TABLE_NAME=$(terraform output BACKEND_TABLE_NAME)
-#   - terraform init
-#     -backend-config="bucket=$BACKEND_BUCKET_NAME"
-#     -backend-config="dynamodb_table=$BACKEND_TABLE_NAME"
-#     -backend-config="$REGION"
-#     remote-backend
-#   - terraform apply -auto-approve remote-backend
-#   # - echo Destroying the whole infrastructure...
-#   # - terraform destroy -auto-approve remote-state
-#   # - terraform destroy -auto-approve remote-backend
-
-# install:
-#   # install AWS EKS Cluster with Terraform
-#   # TODO workspaces and remote state
-#   - #terraform init terraform-resources/aws/eks
-#   - #terraform destroy -auto-approve terraform-resources/aws/eks
-
-
-#   # install OpenFaaS on EKS Cluster with Helm
-
-#   # install the openFaaS-cli
-#   # - curl -sSL https://cli.openfaas.com | sudo sh
-
-
-#       #script: terraform --version
-#     # installing faas-cli
-#   #- curl -sSL https://cli.openfaas.com | sudo sh
-
-# # EKS OpenFaaS installation
-# # install eksctl for creating EKS cluster
-
-  
+  before_install:
+    # install KinD (Kubernetes in Docker)
+    - go get sigs.k8s.io/kind
+    # creating KinD-Cluster in Docker
+    - kind create cluster --name openfaas
+    # create service account with rbac permissions for tiller 
+    - kubectl -n kube-system create sa tiller \
+      && kubectl create clusterrolebinding tiller \
+            --clusterrole cluster-admin \
+            --serviceaccount=kube-system:tiller
+    # installing server component of helm -> tiller 
+    - helm init --skip-refresh --upgrade --service-account tiller
+    # adding namespaces openfaas and openfaas-fn
+    - kubectl apply -f https://raw.githubusercontent.com/openfaas/faas-netes/master/namespaces.yml
+    # installing openFaas with Helm
+    - helm repo add openfaas https://openfaas.github.io/faas-netes && \
+          helm repo update && \
+          helm upgrade openfaas --wait --install openfaas/openfaas \
+            --namespace openfaas  \
+            --set basic_auth=false \
+            --set functionNamespace=openfaas-fn \
+            --set operator.create=true
+    # Port forwarding to localhost:8080 as background process
+    - kubectl port-forward svc/gateway -n openfaas 8080:8080 &
+    # install the faas-cli
+    - curl -sSL https://cli.openfaas.com | sudo sh
+  install:
+    # build the function with yml file and deploy it 
+    - faas-cli store deploy figlet
+    - echo Hi! | faas-cli invoke figlet
