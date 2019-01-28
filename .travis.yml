@@ -20,6 +20,7 @@ before_install:
   - go get sigs.k8s.io/kind
   # creating KinD-Cluster in Docker
   - kind create cluster --name openfaas
+  - export KUBECONFIG="$(kind get kubeconfig-path --name="openfaas")"
   # create service account with rbac permissions for tiller 
   - kubectl -n kube-system create sa tiller
     && kubectl create clusterrolebinding tiller
