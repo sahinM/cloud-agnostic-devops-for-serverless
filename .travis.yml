@@ -17,7 +17,7 @@ services:
 before_install:
   - ./scripts/installation/openfaas-kind.sh
 install:
-  - ./scripts/functions/weather-forecast
+  - ./scripts/functions/weather-forecast.sh
 
 script:
 
