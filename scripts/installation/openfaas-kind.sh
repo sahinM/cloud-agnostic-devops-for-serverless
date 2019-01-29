@@ -9,7 +9,7 @@ export KUBECONFIG="$(kind get kubeconfig-path --name="openfaas")"
 kubectl -n kube-system create sa tiller \
     && kubectl create clusterrolebinding tiller \
           --clusterrole cluster-admin \
-          --serviceaccount=kube-system:tiller \
+          --serviceaccount=kube-system:tiller
   # installing server component of helm -> tiller 
 helm init --skip-refresh --wait --upgrade --service-account tiller
   # adding namespaces openfaas and openfaas-fn

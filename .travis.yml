@@ -15,12 +15,15 @@ services:
   - docker
 
 before_install:
+  - mongo mydb_test --eval 'db.createUser({user:"travis",pwd:"test",roles:["readWrite"]});'
   - ./scripts/installation/openfaas-kind.sh
 install:
-  
+
 script:
 
 after_failure:
   # actions.. 
 after_success:
-  - echo BUILD SUCCESS <3
+  # - if [ "$TRAVIS_BRANCH" == "master" ]; then
+  #   faas-cli push -f app.yml
+  #   fi
