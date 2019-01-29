@@ -15,9 +15,9 @@ services:
   - docker
 
 before_install:
-  - mongo mydb_test --eval 'db.createUser({user:"travis",pwd:"test",roles:["readWrite"]});'
   - ./scripts/installation/openfaas-kind.sh
 install:
+  - ./scripts/functions/weather-forecast
 
 script:
 

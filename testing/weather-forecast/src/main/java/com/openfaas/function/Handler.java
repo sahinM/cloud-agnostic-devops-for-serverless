@@ -25,7 +25,7 @@ public class Handler implements com.openfaas.model.IHandler {
         String responseBody = "";
 
         String body = req.getBody();
-        String[] inputLocationData = body.split(",|\\s|:");
+        String[] inputLocationData = body.split(",|:");
 
         if (inputLocationData.length < 0 || inputLocationData.length > 2) {
             responseBody = "Wrong Number of arguments! Please either enter a single value with City"
@@ -38,6 +38,10 @@ public class Handler implements com.openfaas.model.IHandler {
         return res;
     }
 
+    /**
+     * Creates a Requests to OpenWeather-API and parses the result as JSON String
+     * and return it.
+     */
     public static String currentWeatherDataAsJSON(String[] inputLocationData) {
         StringBuilder urlStringBuilder = new StringBuilder();
         String weatherJSON = null;
