@@ -5,12 +5,12 @@ language: minimal
 addons:
   apt:
     update: false
-  # snaps:
+  snaps:
   #   # - terraform
-  #   - name: kubectl
-  #     classic: true
-  #   - name: helm
-  #     classic: true
+    - name: kubectl
+      classic: true
+    - name: helm
+      classic: true
 services:
   - docker
 
