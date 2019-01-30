@@ -15,10 +15,10 @@ services:
   - docker
 
 before_install:
-
+  - echo "$DOCKER_PW" | docker login -u "$DOCKER_USERNAME" --password-stdin
   # - ./scripts/installation/openfaas-kind.sh
 install:
-  - ./scripts/functions/weather-forecast.sh
+  #- ./scripts/functions/weather-forecast.sh
 
 script:
 after_failure:

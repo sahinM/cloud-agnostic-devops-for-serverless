@@ -25,4 +25,4 @@
 # faas-cli up -f weather-forecast.yml
 # # wait_for_service_to_start echo
 # echo -n Stuttgart, DE | faas-cli invoke weather-forecast
-echo "$DOCKER_PW" | docker login -u "$DOCKER_USERNAME" --password-stdin
+echo '$DOCKER_PW' | docker login -u '$DOCKER_USERNAME' --password-stdin
