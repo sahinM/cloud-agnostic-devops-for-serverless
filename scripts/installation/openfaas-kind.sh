@@ -26,3 +26,9 @@ helm repo add openfaas https://openfaas.github.io/faas-netes && \
 kubectl port-forward svc/gateway -n openfaas 8080:8080 &
   # install the faas-cli
 curl -sSL https://cli.openfaas.com | sudo sh
+
+cd testing
+faas-cli up -f weather-forecast.yml
+# wait_for_service_to_start echo
+echo -n Stuttgart, DE | faas-cli invoke weather-forecast
+cd -
