@@ -13,10 +13,11 @@ import java.net.URL;
 public class Handler implements com.openfaas.model.IHandler {
     private static final String API_KEY = "ed9cd70c532137e71859eb0258ebc6d2";
     private static final String API_URL = "http://api.openweathermap.org/data/2.5/weather?APPID=";
+    private static final String FORECAST_API = "http://api.openweathermap.org/data/2.5/forecast?APPID=";
     private static final String BASE_URL = API_URL + API_KEY;
 
     /**
-     * Text: [City] | [City],[Country] JSON: {"city": "[City]", "country":
+     * Text: [City] | [City],[Country] JSON: {"city": "[City]", "country":"country"}:
      * "[Country]"}
      * 
      *
