@@ -40,10 +40,10 @@ script:
 # this will be executed when a pull request is merged into the master branch
 deploy:
   - provider: script
-    script: bash scripts/deploy_production.sh
+    script: bash ./scripts/deploy_production.sh
     on:
       branch: master
   - provider: script
-    script: bash scripts/deploy_staging.sh
+    script: bash ./scripts/deploy_staging.sh
     on:
       branch: develop
