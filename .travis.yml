@@ -2,6 +2,12 @@ dist: xenial
 sudo: required
 language: minimal
 
+# safelist
+branches:
+  only:
+  - master
+  - develop
+
 addons:
   apt:
     update: false
@@ -28,5 +34,15 @@ script:
 after_success:
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
     echo "$DOCKER_PW" | docker login -u "$DOCKER_USERNAME" --password-stdin
-    faas-cli push -f app.yml
+    faas-cli push -f testing/weather-forecast.yml
     fi
+# this will be executed when a pull request is merged into the master branch
+deploy:
+  - provider: script
+    script: scripts/deploy_production.sh
+    on:
+      branch: master
+  - provider: script
+    script: scripts/deploy_staging.sh
+    on:
+      branch: develop
