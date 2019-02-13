@@ -21,8 +21,6 @@ helm repo add openfaas https://openfaas.github.io/faas-netes && \
           --namespace openfaas \
           --set basic_auth=false \
           --set functionNamespace=openfaas-fn \
-          --set operator.create=true
+          --set operator.create=false
   # Port forwarding to localhost:8080 as background process
 kubectl port-forward svc/gateway -n openfaas 8080:8080 &
-  # install the faas-cli
-curl -sSL https://cli.openfaas.com | sudo sh

@@ -7,23 +7,26 @@ addons:
     update: false
   snaps:
   #   # - terraform
+    # install kubectl for interacting K8s
     - name: kubectl
       classic: true
+    # install helm the package manager for K8s
     - name: helm
       classic: true
 services:
+  # install required docker service
   - docker
 
 before_install:
-  - echo "$DOCKER_PW" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  - ./scripts/installation/openfaas-kind.sh
+  # install the faas-cli
+  - curl -sSL https://cli.openfaas.com | sudo sh
 install:
-  - ./scripts/functions/weather-forecast.sh
-
+  # install temporary testing K8s Environment with KinD
+  - ./scripts/installation/openfaas-kind.sh
 script:
-after_failure:
-  # actions.. 
+  - ./scripts/functions/weather-forecast.sh
 after_success:
-  # - if [ "$TRAVIS_BRANCH" == "master" ]; then
-  #   faas-cli push -f app.yml
-  #   fi
+  - if [ "$TRAVIS_BRANCH" == "master" ]; then
+    echo "$DOCKER_PW" | docker login -u "$DOCKER_USERNAME" --password-stdin
+    faas-cli push -f app.yml
+    fi
