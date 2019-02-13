@@ -39,12 +39,13 @@ script:
 #     fi
 # this will be executed when a pull request is merged into the master branch
 deploy:
-  skip_cleanup: true
   - provider: script
+    skip_cleanup: true
     script: bash ./scripts/deploy_production.sh
     on:
       branch: master
   - provider: script
+    skip_cleanup: true
     script: bash ./scripts/deploy_staging.sh
     on:
       branch: develop
