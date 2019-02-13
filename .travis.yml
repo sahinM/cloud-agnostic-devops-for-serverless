@@ -30,12 +30,13 @@ install:
   # install temporary testing K8s Environment with KinD
   - ./scripts/installation/openfaas-kind.sh
 script:
+  # Build and unit tests
   - ./scripts/functions/weather-forecast.sh
-after_success:
-  - if [ "$TRAVIS_BRANCH" == "master" ]; then
-    echo "$DOCKER_PW" | docker login -u "$DOCKER_USERNAME" --password-stdin
-    faas-cli push -f testing/weather-forecast.yml
-    fi
+# after_success:
+#   - if [ "$TRAVIS_BRANCH" == "master" ]; then
+#     echo "$DOCKER_PW" | docker login -u "$DOCKER_USERNAME" --password-stdin
+#     faas-cli push -f testing/weather-forecast.yml
+#     fi
 # this will be executed when a pull request is merged into the master branch
 deploy:
   - provider: script
