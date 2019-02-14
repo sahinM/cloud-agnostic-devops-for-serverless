@@ -27,17 +27,13 @@ before_install:
   # install the faas-cli
   - curl -sSL https://cli.openfaas.com | sudo sh
 install:
-  # install temporary testing K8s Environment with KinD
+  # create temporary testing OpenFaaS Environment with KinD
   - ./scripts/installation/openfaas-kind.sh
 script:
   # Build and unit tests
   - ./scripts/functions/weather-forecast.sh
-# after_success:
-#   - if [ "$TRAVIS_BRANCH" == "master" ]; then
-#       export KUBECONFIG=kubeconfig-production
-#     elif [ "$TRAVIS_BRANCH" == "develop" ]; then
-#       export KUBECONFIG=kubeconfig-staging
-#     fi
+  # delete temporarily OpenFaaS Environment
+  - kind delete cluster --name openfaas
   
 # Deployment to the environment (dev, prod, staging, ...)
 deploy:

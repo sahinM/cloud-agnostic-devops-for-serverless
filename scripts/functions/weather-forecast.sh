@@ -12,5 +12,5 @@ echo -n Stuttgart, DE | faas-cli invoke weather-forecast
 echo -n Istanbul | faas-cli invoke weather-forecast
 echo -n Heilbronn:DE | faas-cli invoke weather-forecast
 
- kind delete cluster --name openfaas
+
 
