@@ -32,11 +32,13 @@ install:
 script:
   # Build and unit tests
   - ./scripts/functions/weather-forecast.sh
-# after_success:
-#   - if [ "$TRAVIS_BRANCH" == "master" ]; then
-#     echo "$DOCKER_PW" | docker login -u "$DOCKER_USERNAME" --password-stdin
-#     faas-cli push -f testing/weather-forecast.yml
-#     fi
+after_success:
+  - kind delete cluster --name openfaas
+  - if [ "$TRAVIS_BRANCH" == "master" ]; then
+      export KUBECONFIG=kubeconfig-production
+    elif [ "$TRAVIS_BRANCH" == "develop" ]; then
+      export KUBECONFIG=kubeconfig-staging
+    fi
 # this will be executed when a pull request is merged into the master branch
 deploy:
   - provider: script

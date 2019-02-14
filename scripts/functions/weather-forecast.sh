@@ -11,3 +11,4 @@ faas-cli up -f weather-forecast.yml
 echo -n Stuttgart, DE | faas-cli invoke weather-forecast
 echo -n Istanbul | faas-cli invoke weather-forecast
 echo -n Heilbronn:DE | faas-cli invoke weather-forecast
+
