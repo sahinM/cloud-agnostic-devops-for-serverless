@@ -28,28 +28,26 @@ before_install:
   - curl -sSL https://cli.openfaas.com | sudo sh
 install:
   # install temporary testing K8s Environment with KinD
-  # - ./scripts/installation/openfaas-kind.sh
+  - ./scripts/installation/openfaas-kind.sh
 script:
   # Build and unit tests
-  # - ./scripts/functions/weather-forecast.sh
-after_success:
-  - if [ "$TRAVIS_BRANCH" == "master" ]; then
-      export KUBECONFIG=kubeconfig-production
-    elif [ "$TRAVIS_BRANCH" == "develop" ]; then
-      export KUBECONFIG=kubeconfig-staging
-    fi
+  - ./scripts/functions/weather-forecast.sh
+# after_success:
+#   - if [ "$TRAVIS_BRANCH" == "master" ]; then
+#       export KUBECONFIG=kubeconfig-production
+#     elif [ "$TRAVIS_BRANCH" == "develop" ]; then
+#       export KUBECONFIG=kubeconfig-staging
+#     fi
   
-before_deploy:
-  - go get -u -v github.com/kubernetes-sigs/aws-iam-authenticator/cmd/aws-iam-authenticator
 # Deployment to the environment (dev, prod, staging, ...)
 deploy:
-# this will be executed when a pull request is merged into the master branch
+  # this will be executed when a pull request is merged into the master branch
   - provider: script
     skip_cleanup: true
     script: bash scripts/deployment/deploy_production.sh
     on:
       branch: master
-# this will be executed on development branch
+  # this will be executed on development branch
   - provider: script
     skip_cleanup: true
     script: bash scripts/deployment/deploy_staging.sh
