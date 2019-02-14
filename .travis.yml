@@ -38,13 +38,18 @@ after_success:
     elif [ "$TRAVIS_BRANCH" == "develop" ]; then
       export KUBECONFIG=kubeconfig-staging
     fi
-# this will be executed when a pull request is merged into the master branch
+  
+before_deploy:
+  - go get -u -v github.com/kubernetes-sigs/aws-iam-authenticator/cmd/aws-iam-authenticator
+# Deployment to the environment (dev, prod, staging, ...)
 deploy:
+# this will be executed when a pull request is merged into the master branch
   - provider: script
     skip_cleanup: true
     script: bash scripts/deployment/deploy_production.sh
     on:
       branch: master
+# this will be executed on development branch
   - provider: script
     skip_cleanup: true
     script: bash scripts/deployment/deploy_staging.sh
