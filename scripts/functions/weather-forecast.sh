@@ -4,6 +4,7 @@
 export KUBECONFIG="$(kind get kubeconfig-path --name="openfaas")"
 cd testing
 # building and testing the function with gradle tool
+echo "$DOCKER_PW" | docker login -u "$DOCKER_USERNAME" --password-stdin
 faas-cli up -f weather-forecast.yml
 
 # Some test cases
