@@ -28,10 +28,10 @@ before_install:
   - curl -sSL https://cli.openfaas.com | sudo sh
 install:
   # install temporary testing K8s Environment with KinD
-  - ./scripts/installation/openfaas-kind.sh
+  # - ./scripts/installation/openfaas-kind.sh
 script:
   # Build and unit tests
-  - ./scripts/functions/weather-forecast.sh
+  # - ./scripts/functions/weather-forecast.sh
 after_success:
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
       export KUBECONFIG=kubeconfig-production
