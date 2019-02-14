@@ -2,7 +2,7 @@
 
 # build, deploy and push weather-forecast function and call it
 export KUBECONFIG="$(kind get kubeconfig-path --name="openfaas")"
-cd app
+cd testing
 # building and testing the function with gradle tool
 faas-cli up -f weather-forecast.yml
 
