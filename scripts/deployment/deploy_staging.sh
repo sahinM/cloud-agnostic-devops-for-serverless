@@ -10,8 +10,8 @@ cd testing
 faas-cli up -f weather-forecast.yml --gateway="$EKS_OF_GW" --tag=branch
 
 # Some test cases
-echo -n Stuttgart, DE | faas-cli invoke weather-forecast
-echo -n Istanbul | faas-cli invoke weather-forecast
-echo -n Heilbronn:DE | faas-cli invoke weather-forecast
+echo -n Stuttgart, DE | faas-cli invoke weather-forecast -gateway="$EKS_OF_GW"
+echo -n Istanbul | faas-cli invoke weather-forecast -gateway="$EKS_OF_GW"
+echo -n Heilbronn:DE | faas-cli invoke weather-forecast -gateway="$EKS_OF_GW"
 
 cd -
