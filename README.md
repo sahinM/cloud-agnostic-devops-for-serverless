@@ -68,6 +68,8 @@ To get the pipeline running you need to do these steps:
    5. `EKS_OF_URL` - the URL which is resulted from the staging environment script
    6. `EKS_OF_USER` - Username for OpenFaaS you used in the staging environment script
    7. `EKS_OF_PW` - Password for OpenFaaS you used in the staging environment script
+
+![TravisCI Environment Variables](images/TravisCI_Environment_Variables.png)
 5. checkout the develop branch and update it to the current branch
 6. Trigger your Travis CI Pipeline
 
