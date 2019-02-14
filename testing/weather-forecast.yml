@@ -5,4 +5,4 @@ functions:
   weather-forecast:
     lang: java8
     handler: ./weather-forecast
-    image: sahinmm/weather-forecast:0.1
+    image: sahinmm/weather-forecast

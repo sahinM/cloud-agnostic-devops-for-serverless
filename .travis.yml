@@ -33,7 +33,6 @@ script:
   # Build and unit tests
   - ./scripts/functions/weather-forecast.sh
 after_success:
-  - kind delete cluster --name openfaas
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
       export KUBECONFIG=kubeconfig-production
     elif [ "$TRAVIS_BRANCH" == "develop" ]; then

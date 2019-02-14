@@ -1,0 +1,25 @@
+apiVersion: v1
+clusters:
+- cluster:
+    certificate-authority-data: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUN5RENDQWJDZ0F3SUJBZ0lCQURBTkJna3Foa2lHOXcwQkFRc0ZBREFWTVJNd0VRWURWUVFERXdwcmRXSmwKY201bGRHVnpNQjRYRFRFNU1ESXhOREUwTURJek9Gb1hEVEk1TURJeE1URTBNREl6T0Zvd0ZURVRNQkVHQTFVRQpBeE1LYTNWaVpYSnVaWFJsY3pDQ0FTSXdEUVlKS29aSWh2Y05BUUVCQlFBRGdnRVBBRENDQVFvQ2dnRUJBTlRMCnJRWGxyb2pHaXh1RzZvRE0zR25TZGUzSHdFcFZrVHh1S2UrZ0N4c1hnaC96ejRIS0o3NndyelBvcEJHQ29pQnoKSUdETGJ5djRIbnJCdXlqWG9sUjdQOVg5SEZPR1FNN0t4SHhIakRTRTlEQWlMLzJEZE41a2hpRmRvLzR5aWRZcgpidEhVVUVNQTByMDZnZHVHZkcwNW9CSkR6amQrRGYyc1lUaURZbndMVFprSzdPaFVFMXd4Z290VXVlbzRiOURiCnBGazM0KzQvQUhDZlVaS0pSR1pLaHljUWphZ1FXMFFoa1RjTVlLOFo2eW9wWUM2amRjWVRqUjJ6dE9rVTVKMGcKSVVBaDBCM3cweE9yWkllT3c2MTA3WEFpVUFVTDdFYnZDR0ZRUGpGb1B3TytJUU9XeSt2ejArM0xaOWlGZDl5VQowb3V6SmhmR3pObVNMK1hoQlQwQ0F3RUFBYU1qTUNFd0RnWURWUjBQQVFIL0JBUURBZ0trTUE4R0ExVWRFd0VCCi93UUZNQU1CQWY4d0RRWUpLb1pJaHZjTkFRRUxCUUFEZ2dFQkFFQmo2SCtaZ1IrT2ZRVXBoWk5GTXhiZHFUM04KNTVHc3VUZ2YrOVExTmtLdndDT1FhNWRHTFpRM2h3cy9hVWtBQVVSRFcrOVZ1OU1KbXFVYnN5QjVTd0w3U3I0NwphMEtDRWppQnQwMy80V0VZOTU0UWZMcTZoTXUyaXNkOFlPc1NTbEF3Y3M3dG5vQ2NWWU9sRjNqOWFDek1EY0JLCk5nY2E4TE9sNGM2dmNnS2tqL3VDaVM3MXJ6OC9rVS9rRXBkczFmU1JTS0VaUGwyanpiRW04blJvSmJoVzRzR3AKTnhHSGE3ZVpUYTRMUGg1VVRYZW5yOUtvTUNFelJhZW1lb0lkQ3hodWQ1NkVFZjNVM1JMblJxcFNGbW04MlRSVgpkWEJ0UE9xSnVDdFhEY3BtdGhqMSt4T2xkOEZtS2hGeGZNb3pDaU5aOEFMVWlsN3JITkJLUHZlRTgzST0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo=
+    server: https://95C83E6E95D252AAFEDEB4EE58DF8350.sk1.eu-west-1.eks.amazonaws.com
+  name: openfaas.eu-west-1.eksctl.io
+contexts:
+- context:
+    cluster: openfaas.eu-west-1.eksctl.io
+    user: sahinm4thesis@openfaas.eu-west-1.eksctl.io
+  name: sahinm4thesis@openfaas.eu-west-1.eksctl.io
+current-context: sahinm4thesis@openfaas.eu-west-1.eksctl.io
+kind: Config
+preferences: {}
+users:
+- name: sahinm4thesis@openfaas.eu-west-1.eksctl.io
+  user:
+    exec:
+      apiVersion: client.authentication.k8s.io/v1alpha1
+      args:
+      - token
+      - -i
+      - openfaas
+      command: aws-iam-authenticator
+      env: null
