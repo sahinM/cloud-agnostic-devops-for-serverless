@@ -8,7 +8,7 @@ pipeline uses 3 OpenFaaS instances on three Kubernetes Cluster with On-Prem (VM 
 
 ## CI/CD Pipeline with Travis CI
 
-![CI/CD Pipeline](images/Pipeline-Architecture.png)
+![CI/CD Pipeline](images/Pipeline-Prototype-Architecture.pdf)
 
 ## Prerequisites
 
